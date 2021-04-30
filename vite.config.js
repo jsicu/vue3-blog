@@ -2,7 +2,7 @@
  * @Author: linzq
  * @Date: 2021-04-28 10:34:00
  * @LastEditors: linzq
- * @LastEditTime: 2021-04-28 11:28:42
+ * @LastEditTime: 2021-04-30 16:37:16
  * @Description:
  */
 const { resolve } = require('path');
@@ -10,7 +10,8 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+module.exports = defineConfig({
+  // root: './src/pages/progress',
   plugins: [vue()],
   server: {
     port: 3030, // 配置启用的端口号
@@ -18,8 +19,9 @@ export default defineConfig({
   resolve: {
     // 设置别名
     alias: {
-      '@/views': resolve(__dirname, 'src/views/'),
-      '@/styles': resolve(__dirname, 'src/styles/'),
+      '@pages': resolve(__dirname, 'src/pages/'),
+      '@components': resolve(__dirname, 'src/components/'),
+      '@assets': resolve(__dirname, 'src/assets/'),
     },
   },
 });
