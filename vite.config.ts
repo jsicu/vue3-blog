@@ -2,11 +2,12 @@
  * @Author: linzq
  * @Date: 2021-05-06 23:31:37
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-06 23:45:42
+ * @LastEditTime: 2021-05-07 20:42:10
  * @Description:
  */
 import type { UserConfig, ConfigEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import viteSvgIcons from 'vite-plugin-svg-icons';
 
 import { resolve } from 'path';
 import { loadEnv } from 'vite';
@@ -94,18 +95,19 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
     // The vite plugin used by the project. The quantity is large, so it is separately extracted and managed
     // plugins: createVitePlugins(viteEnv, isBuild),
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      viteSvgIcons({
+        // Specify the icon folder to be cached
+        iconDirs: [resolve(process.cwd(), 'src/assets/svg')],
+        // Specify symbolId format
+        symbolId: 'svg-[dir]-[name]',
+      }),
+    ],
     // 还没搞明白，注释
     optimizeDeps: {
-      // @iconify/iconify: The dependency is dynamically and virtually loaded by @purge-icons/generated, so it needs to be specified explicitly
-      // include: [
-      //   '@iconify/iconify',
-      //   'ant-design-vue/es/locale/zh_CN',
-      //   'moment/dist/locale/zh-cn',
-      //   'ant-design-vue/es/locale/en_US',
-      //   'moment/dist/locale/eu',
-      // ],
-      // exclude: ['vue-demi'],
+      // include: ['element-plus', 'element-plus/lib/theme-chalk/index.css'],
+      // exclude: ['element-plus'],
     },
   };
 };

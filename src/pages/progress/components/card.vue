@@ -2,18 +2,41 @@
  * @Author: linzq
  * @Date: 2021-05-07 15:33:42
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-07 16:55:36
+ * @LastEditTime: 2021-05-07 23:51:05
  * @Description: 需求卡片
 -->
 <template>
   <div class="card">
-    <div>标志</div>
-    <span class="title">开发评价功能</span>
-    <div>功能点</div>
-    <svg-icon :icon-class="'eye-open'" />
+    <div :class="{'sign-start': !signResult, 'keyframes': signState, 'sign-end': signResult && signState } " @click="resize">
+      <span class="sign-title">已开发</span>
+    </div>
+    <span class="title">{{sketch}}</span>
+    <div class="state">
+      <svg-icon name="multiple" size="13" /> &nbsp;{{completed}}/{{count}}
+    </div>
+
   </div>
 </template>
-<script setup>
+
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
+export default defineComponent({
+  name: 'Card',
+  setup: () => {
+    const count = ref(0);
+    const sketch = '功能简述';
+    const completed = ref(0);
+    let signState = ref(false);
+    let signResult = ref(false);
+    function resize() {
+      signState.value = true;
+      setTimeout(() => {
+        signResult.value = true;
+      }, 2000);
+    }
+    return { count, completed, sketch, resize, signState, signResult };
+  },
+});
 </script>
 <style lang='less' scoped>
 .card {
@@ -22,13 +45,62 @@
   border-radius: 4px;
   padding: 8px;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+
+  .sign-start {
+    background-color: red;
+    border-radius: 5px;
+    height: 10px;
+    width: 45px;
+  }
+  .keyframes {
+    animation-name: sign;
+    animation-duration: 2s;
+  }
+  .sign-title {
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 5px;
+    color: white;
+  }
+  .sign-end {
+    background-color: red;
+    border-radius: 5px;
+    height: 22px;
+    width: 60px;
+    line-height: 20px;
+  }
+
   .title {
+    display: inline-block;
     color: #172b4d;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
     font-size: 14px;
+    margin: 5px 0;
+  }
+  .state {
+    font-size: 13px;
+    color: #5e6c84;
+    margin: 4px;
+  }
+}
+
+@keyframes sign {
+  0% {
+    height: 10px;
+    width: 45px;
+  }
+  50% {
+    height: 10px;
+    width: 60px;
+  }
+  100% {
+    height: 22px;
+    width: 60px;
+    line-height: 20px;
   }
 }
 </style>

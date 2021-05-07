@@ -2,52 +2,59 @@
  * @Author: linzq
  * @Date: 2021-05-07 16:19:48
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-07 16:47:10
+ * @LastEditTime: 2021-05-07 20:48:57
  * @Description: 图标组件
 -->
 <template>
+  <!-- 使用远程图片 -->
   <div v-if="isExter" :style="styleExternalIcon" class="svg-external-icon svg-icon" />
-  <svg v-else :class="svgClass" aria-hidden="true">
-    <use :xlink:href="iconName" />
+  <!-- 使用本地svg -->
+  <svg v-else :style="getStyle" aria-hidden="true">
+    <use :xlink:href="symbolId" />
   </svg>
 </template>
 
-<script>
-// doc: https://panjiachen.github.io/vue-element-admin-site/feature/component/svg-icon.html#usage
-import { isExternal } from '/@/utils/validate';
+<script lang="ts">
+import type { CSSProperties } from 'vue';
 import { defineComponent, computed } from 'vue';
+import { isExternal } from '/@/utils/validate';
+// import ids from 'virtual:svg-icons-names';
 
-export default defineComponent({
+export default {
   name: 'SvgIcon',
   props: {
-    iconClass: {
+    name: {
       type: String,
       required: true,
     },
-    className: {
-      type: String,
-      default: '',
+    size: {
+      type: [Number, String],
+      default: 16,
     },
   },
   setup(props) {
-    const isExter = computed(() => isExternal(props.iconClass));
-    const iconName = computed(() => `#icon-${props.iconClass}`);
-    const svgClass = computed(() => {
-      if (props.className) {
-        return 'svg-icon ' + props.className;
-      } else {
-        return 'svg-icon';
-      }
-    });
+    const isExter = isExternal(props.name);
     const styleExternalIcon = computed(() => {
       return {
-        mask: `url(${props.iconClass}) no-repeat 50% 50%`,
-        '-webkit-mask': `url(${props.iconClass}) no-repeat 50% 50%`,
+        mask: `url(${props.name}) no-repeat 50% 50%`,
+        '-webkit-mask': `url(${props.name}) no-repeat 50% 50%`,
       };
     });
-    return { isExter, iconName, svgClass, styleExternalIcon };
+    const getStyle = computed(
+      (): CSSProperties => {
+        const { size } = props;
+        let s = `${size}`;
+        s = `${s.replace('px', '')}px`;
+        return {
+          width: s,
+          height: s,
+        };
+      }
+    );
+    const symbolId = computed(() => `#svg-${props.name}`);
+    return { symbolId, isExter, styleExternalIcon, getStyle };
   },
-});
+};
 </script>
 
 <style scoped>
