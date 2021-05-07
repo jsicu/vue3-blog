@@ -2,14 +2,13 @@
  * @Author: linzq
  * @Date: 2021-05-02 21:13:24
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-06 23:51:38
+ * @LastEditTime: 2021-05-07 13:59:04
  * @Description: 路由
  */
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
-import type { RouteRecordRaw } from 'vue-router';
-import type { AppRouteRecordRaw } from '/@/router/types';
+import type { Router, RouteRecordRaw } from 'vue-router';
 
-export const constantRoutes = [
+export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/home',
@@ -30,7 +29,7 @@ export const constantRoutes = [
   },
 ];
 
-const router = createRouter({
+const router: Router = createRouter({
   // history: createWebHashHistory(),
   history: createWebHistory(),
   routes: (constantRoutes as unknown) as RouteRecordRaw[],

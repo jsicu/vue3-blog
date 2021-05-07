@@ -1,17 +1,22 @@
 {
-  "name": "vue-next",
+  "name": "vue3-blog",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint \"src/**/*.{vue,js}\" --fix"
+    "lint-fix": "eslint \"src/**/*.{vue,js}\" --fix",
+    "lint": "eslint \"src/**/*.{vue,js}\" "
   },
   "dependencies": {
+    "element-plus": "^1.0.2-beta.41",
+    "less": "^4.1.1",
+    "less-loader": "^8.1.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.6"
   },
   "devDependencies": {
+    "@types/node": "^15.0.2",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.5",
     "eslint": "^7.25.0",
@@ -21,5 +26,24 @@
     "typescript": "^4.2.4",
     "vite": "^2.2.3",
     "vue-eslint-parser": "^7.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsicu/vue3-blog.git"
+  },
+  "keywords": [
+    "vite2",
+    "vue3",
+    "TypeScript",
+    "blog"
+  ],
+  "author": "jsicu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jsicu/vue3-blog/issues"
+  },
+  "homepage": "https://github.com/jsicu/vue3-blog#readme",
+  "engines": {
+    "node": ">=14"
   }
 }
