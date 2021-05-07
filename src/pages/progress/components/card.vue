@@ -2,13 +2,13 @@
  * @Author: linzq
  * @Date: 2021-05-07 15:33:42
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-07 23:51:05
+ * @LastEditTime: 2021-05-08 00:02:33
  * @Description: 需求卡片
 -->
 <template>
   <div class="card">
     <div :class="{'sign-start': !signResult, 'keyframes': signState, 'sign-end': signResult && signState } " @click="resize">
-      <span class="sign-title">已开发</span>
+      <span class="sign-title">开发</span>
     </div>
     <span class="title">{{sketch}}</span>
     <div class="state">
