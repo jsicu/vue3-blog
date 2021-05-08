@@ -2,7 +2,7 @@
  * @Author: linzq
  * @Date: 2021-05-07 15:33:42
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-08 16:59:48
+ * @LastEditTime: 2021-05-08 17:11:39
  * @Description: 需求卡片
 -->
 <template>
@@ -10,9 +10,10 @@
     <!-- 标志动画 -->
     <div
       :class="[{'keyframes-start': signState === true, 'keyframes-end': signState === false, 'sign-start': !signResult, 'sign-end': signResult && signState }] "
-      @click="resize">
+      style="background-color: red;" @click="resize">
+      <!-- signColor -->
       <transition name="fade">
-        <span v-if="signState" class="sign-title">开发</span>
+        <span v-if="signState" class="sign-title">开发{{'sign'}}</span>
       </transition>
     </div>
     <span class="title">{{sketch}}</span>
@@ -56,7 +57,7 @@ export default defineComponent({
   user-select: none;
 
   .sign-start {
-    background-color: red;
+    // background-color: red;
     border-radius: 5px;
     height: 10px;
     width: 45px;
@@ -76,7 +77,7 @@ export default defineComponent({
     color: white;
   }
   .sign-end {
-    background-color: red;
+    // background-color: red;
     border-radius: 5px;
     height: 22px;
     width: 60px;
@@ -110,7 +111,7 @@ export default defineComponent({
     width: 60px;
   }
   100% {
-    background-color: red;
+    // background-color: red;
     border-radius: 5px;
     height: 22px;
     width: 60px;
@@ -119,7 +120,7 @@ export default defineComponent({
 }
 @keyframes sign-end {
   0% {
-    background-color: red;
+    // background-color: red;
     border-radius: 5px;
     height: 22px;
     width: 60px;
@@ -130,7 +131,7 @@ export default defineComponent({
     width: 60px;
   }
   100% {
-    background-color: red;
+    // background-color: red;
     border-radius: 5px;
     height: 10px;
     width: 45px;
