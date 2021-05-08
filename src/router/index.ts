@@ -2,7 +2,7 @@
  * @Author: linzq
  * @Date: 2021-05-02 21:13:24
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-07 13:59:04
+ * @LastEditTime: 2021-05-08 14:03:54
  * @Description: 路由
  */
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
@@ -19,7 +19,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     component: () => import('/@/pages/home.vue'),
   },
   {
-    path: '/user/:id',
+    path: '/user',
     component: () => import('/@/pages/user.vue'),
   },
   // 进度看板,

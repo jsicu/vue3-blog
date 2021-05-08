@@ -2,7 +2,7 @@
  * @Author: linzq
  * @Date: 2021-05-07 11:25:04
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-07 15:57:14
+ * @LastEditTime: 2021-05-08 11:44:23
  * @Description: 标签页
 -->
 <template>
@@ -12,8 +12,18 @@
     <Card />
   </div>
 </template>
-<script setup>
+<script lang="ts">
+import { ref, defineComponent, onMounted } from 'vue';
 import Card from './card.vue';
+import { useStore } from 'vuex';
+export default defineComponent({
+  name: 'Tabs',
+  components: { Card },
+  setup: () => {
+    // const appStore = useStore();
+    // onMounted(() => {});
+  },
+});
 </script>
 <style lang='less' scoped>
 .tabs {

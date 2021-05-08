@@ -2,24 +2,27 @@
  * @Author: linzq
  * @Date: 2021-05-07 15:33:42
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-08 00:02:33
+ * @LastEditTime: 2021-05-08 09:53:54
  * @Description: 需求卡片
 -->
 <template>
   <div class="card">
-    <div :class="{'sign-start': !signResult, 'keyframes': signState, 'sign-end': signResult && signState } " @click="resize">
+    <div
+      :class="{'sign-start': !state.signResult, 'keyframes': state.signState, 'sign-end': state.signResult && state.signState } "
+      @click="resize">
+      <!--  -->
       <span class="sign-title">开发</span>
     </div>
     <span class="title">{{sketch}}</span>
     <div class="state">
       <svg-icon name="multiple" size="13" /> &nbsp;{{completed}}/{{count}}
     </div>
-
+    <button @click="test"> anniu </button>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, reactive } from 'vue';
 export default defineComponent({
   name: 'Card',
   setup: () => {
@@ -28,13 +31,26 @@ export default defineComponent({
     const completed = ref(0);
     let signState = ref(false);
     let signResult = ref(false);
+    const state = reactive({ signState: false, signResult: false });
     function resize() {
       signState.value = true;
+      state.signState = true;
       setTimeout(() => {
         signResult.value = true;
-      }, 2000);
+        state.signResult = true;
+        console.log(state);
+      }, 2010);
     }
-    return { count, completed, sketch, resize, signState, signResult };
+    function test() {
+      signState.value = true;
+      state.signState = true;
+      setTimeout(() => {
+        signResult.value = true;
+        state.signResult = true;
+        console.log(state);
+      }, 2010);
+    }
+    return { count, completed, sketch, resize, signState, signResult, state, test };
   },
 });
 </script>
@@ -55,7 +71,7 @@ export default defineComponent({
     width: 45px;
   }
   .keyframes {
-    animation-name: sign;
+    animation-name: sign-start;
     animation-duration: 2s;
   }
   .sign-title {
@@ -88,7 +104,7 @@ export default defineComponent({
   }
 }
 
-@keyframes sign {
+@keyframes sign-start {
   0% {
     height: 10px;
     width: 45px;
