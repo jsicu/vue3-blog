@@ -2,7 +2,7 @@
  * @Author: linzq
  * @Date: 2021-05-02 21:14:37
  * @LastEditors: linzq
- * @LastEditTime: 2021-05-08 14:24:47
+ * @LastEditTime: 2021-05-08 14:55:19
  * @Description: 
 -->
 <template>
@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, computed, toRefs } from 'vue';
-import { useStore } from '../store';
+import { useStore } from '/@/store';
 
 export default defineComponent({
   name: 'Vuex',
@@ -29,8 +29,11 @@ export default defineComponent({
     });
 
     const double = () => {
-      store.commit('numFactoryModule/DOUBLE_COUNT');
+      store.commit('appModule/DOUBLE_COUNT');
     };
+
+    // 访问一个 action
+    // asyncIncrement: () => store.dispatch('asyncIncrement');
 
     return {
       ...toRefs(reactiveData),
